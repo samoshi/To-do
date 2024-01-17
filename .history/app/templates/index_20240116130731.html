@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata Section -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.2/socket.io.js"></script>
+    <script>
+        // Connect to the WebSocket server
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+    
+        // Event handler for receiving task updates
+        socket.on('update_tasks', function (data) {
+            // Reload the page
+            location.reload();
+        });
+    </script>
+    
+</head>
+<body>
+    <!-- Main Content Container -->
+    <div class="container">
+        <!-- To-Do App Section -->
+        <div class="todo-app">
+            <!-- App Title -->
+            <div class="app-title">
+                <h2>To-Do App</h2>
+                <i class="fa-solid fa-book-bookmark"></i> <!-- Bookmark Icon -->
+            </div>
+
+            <!-- Form to Add Tasks -->
+            <form action="/add_task" method="post">
+                <div class="row">
+                    <input type="text" name="title" id="input-box" placeholder="Add your tasks" required>
+                    <button class="add_button">Add</button>
+                </div>
+            </form>
+
+            <!-- Clear Tasks Button -->
+            <form action="/clear_tasks" method="get">
+                <button class="clear_button" type="submit">Clear Tasks</button>
+            </form>
+            <!-- Task List -->
+            <ul id="list-container">
+                {% for task in task_list %}
+                    <li class="{{ 'complete' if task.complete else 'incomplete' }}" onclick="toggleChecked(this)">
+                        <a class="toggle" href="/complete/{{ task.id }}">{{ task.title }}</a>
+                        <a class="remove" href="/remove/{{ task.id }}">X</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        &copy; 2024 To-Do App by <a href="https://www.linkedin.com/in/samuil-ivanov-63782b170/" target="_blank">Samuil Ivanov <i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <!-- GitHub Link -->
+    <a href="https://github.com/samoshi/To-do" class="github-link" target="_blank">
+        <i class="fab fa-github"></i>
+    </a>
+</body>
+</html>

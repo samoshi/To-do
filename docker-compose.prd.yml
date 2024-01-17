@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: prd_user
+      POSTGRES_PASSWORD: prd_password
+      POSTGRES_DB: prd_database
+    ports:
+      - "5432:5432"
+
+
+  web:
+    build: ./app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=prd
+    depends_on:
+      - postgres
+    restart: always
+
+
+  nginx:
+    build:
+      context: ./app
+      dockerfile: Dockerfile-nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - web
+    restart: always

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta> charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-Do list</title>
+    </head>
+
+    <body>
+        <h1>To-Do List</h1>
+
+        <form method="POST" action="{{ url_for('add_task') }}">
+            <label for="description"> New Task:</label>
+            <input type="text" id="description" name="description" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <h2>Tasks:</h2>
+        <ul>
+            {% for tasks in tasks %}
+                <li>
+                    {% if task.completed %}
+                        <s>{{ task.description }}</s> (completed)
+                    {% else %}
+                        {{ task.description }}
+                        <a href="{{ url_for('complete_task', task_id=loop.index-1) }}">Complete</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </body>
+
+</html>

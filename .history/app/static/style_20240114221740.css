@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+*, *:before, *:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #153677, #4e085f);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todo-app{
+    width: 100%;
+    max-width: 540px;
+    background: linear-gradient(45deg, #f5f5f5, #e0e0e0);
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 2rem;
+}
+.app-title{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.app-title h2, .app-title i{
+    color: #333333;
+}
+.app-title i{
+    font-size: 26px;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #edeef0;
+    border-radius: 30px;
+}
+input{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: 153677;
+    color: #000000;
+    padding: 12px;
+    font-size: 17px;
+    padding-left: 20px;
+}
+
+button:hover {
+    cursor: pointer;
+    filter: brightness(.8);
+    background-color: #0e2a4b; /* Darker blue for input and button on hover */
+}
+
+input:hover {
+    filter: brightness(.8);
+    background-color: #ffffffa4; /* Darker blue for input and button on hover */
+}
+
+button.clear_button, button.add_button{
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 15px 50px;
+    border-radius: 5px;
+    background-color: #153677;
+    color: #ffffff;
+    font-size: 18px;
+    transition: all .5s ;
+}
+
+@media screen and (max-width: 400px) {
+    button {
+        padding: 15px;
+        border-radius: 0 30px 30px 0;
+    }
+}
+
+a {
+    text-decoration: none;
+    align-items: center;
+    color: #333;
+    cursor: pointer;
+}
+
+li {
+    font-size: 17px;
+    margin-top: 5px;
+    position: relative;
+    transition: background-color 0.2s ease;
+    border-radius: 10px;
+    list-style-type: none;
+    outline: 2px solid #7289da;
+}
+
+li a {
+    display: block;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    text-decoration: none;
+    color: #353535;
+    transition: color 0.2s ease;
+}
+
+li.incomplete {
+    background-color: #ffdddd; /* Red background for incomplete */
+}
+
+li.complete {
+    background-color: #c2f0c2; /* Green background for complete */
+}
+
+/* li a:hover {
+
+    background-color: #27ae60; 
+    color: #fff;
+} */
+
+li.incomplete a:hover {
+   
+    background-color: #ffaaaa;
+    color: #000000;
+}
+
+li.complete a:hover {
+    /* Optional: Add styles for hover effect */
+    background-color: #a8e6a8; /* Lighter green hover effect for complete */
+    color: #000000; /* Black text on hover for better contrast */
+}
+
+ul li::before {
+    position: absolute;
+    content: '';
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+    border-radius: 50%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 24px;
+    text-align: center;
+    transition: background-color 0.2s ease;
+    pointer-events: none;
+}
+
+ul li.incomplete::before {
+    content: 'X';
+    color: #ff5945;
+}
+
+ul li.complete::before {
+    content: '\2713';
+    color: #07700e;
+}
+
+
+a.remove {
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #555;
+    font-size: 18px;
+    transition: all .2s ease;
+}
+a.remove:hover{
+    background-color: #c9c9c9;
+    color: #fff;
+}

@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: to-do-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: to-do-app
+  template:
+    metadata:
+      labels:
+        app: to-do-app
+    spec:
+      containers:
+      - name: to-do-app
+        image: gcr.io/mimetic-wharf-411315/to-do:1

@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+*, *:before, *:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #153677, #4e085f);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todo-app{
+    width: 100%;
+    max-width: 540px;
+    background-color: #fff;
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 2rem;
+}
+.app-title{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.app-title h2, .app-title i{
+    color: #002765;
+}
+.app-title i{
+    font-size: 26px;
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #edeef0;
+    border-radius: 30px;
+}
+input{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 12px;
+    font-size: 17px;
+    padding-left: 20px;
+}
+button{
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 15px 50px;
+    border-radius: 30px;
+    background-color: #ff5945;
+    color: #fff;
+    font-size: 18px;
+    transition: all .25s ease;
+}
+button:hover{
+    filter: brightness(.8);
+}
+
+@media screen and (max-width: 400px) {
+    button{
+        padding: 15px;
+        border-radius: 0 30px 30px 0;
+    }
+}
+
+ul li {
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    margin-top: 5px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease;
+    border-radius: 10px;
+    list-style-type: none;
+}
+
+ul li.incomplete::before {
+    position: absolute;
+    content: '';
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    left: 0;
+    border: 2px solid #ff5945;
+    transition: background-color 0.2s ease;
+}
+
+ul li.incomplete:hover {
+    border-radius: 2%;
+    border: 2px solid #272de1;
+    transition: background-color 0.2s ease;
+}
+
+ul li.completed::before {
+    position: absolute;
+    content: '\2713'; /* Checkmark Unicode character */
+    width: 24px;
+    height: 24px;
+    font-size: 18px; /* Adjust the font size as needed */
+    border-radius: 50%;
+    left: 0;
+    line-height: 24px; /* Center the checkmark vertically */
+    text-align: center; /* Center the checkmark horizontally */
+    transition: background-color 0.2s ease;
+}
+
+ul li.completed {
+    position: relative;
+    background-color: rgba(144, 238, 144, 0.2)
+}
+
+ul li.completed:after {
+    content: 'X'; /* Display an X */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em; /* Adjust the font size as needed */
+    color: rgba(255, 255, 255, 0.5); /* White with transparency */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.2s ease;
+}
+
+ul li.completed:hover {
+    background-color: #ff5945;
+}
+
+ul li.completed:hover:after {
+    opacity: 1; /* Show the X on hover */
+}
+
+
+
+
+ul li:hover {
+    background-color: rgba(144, 238, 144, 0.2); /* Light green with transparency */
+}
+
+ul li:hover::before {
+    background-color: rgba(255, 255, 255, 0.5); /* White with transparency */
+}

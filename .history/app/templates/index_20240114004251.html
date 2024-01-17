@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do list</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <form method="POST" action="{{ url_for('add_task') }}">
+            <label for="description">New Task:</label>
+            <input type="text" id="description" name="description" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <h2>Tasks:</h2>
+        <ul>
+            {% for task in tasks %}
+                <li class="{% if task.completed %}completed-task{% endif %}" onclick="completeTask('{{ url_for('complete_task', task_id=loop.index-1) }}')">
+                    {% if task.completed %}
+                        <span>{{ task.description }}</span>
+                        <span class="remove-task" onclick="removeTask('{{ url_for('remove_task', task_id=loop.index-1) }}')">&#10003;</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        
+    </div>
+    <script>
+        function completeTask(url) {
+            window.location.href = url;
+        }
+    
+        function removeTask(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
