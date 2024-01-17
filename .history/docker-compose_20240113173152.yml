@@ -1,9 +1,0 @@
-version: '1'
-services:
-  web:
-    build:
-      context: ./app
-    volumes:
-      - ./app:/app
-    ports:
-      - "5000:5000"

@@ -1,4 +1,0 @@
-Flask==2.0.0
-Jinja2==3.1.3
-Werkzeug>=2.0  # Specify a version range that includes 2.0 and higher
-MarkupSafe==2.1.3
